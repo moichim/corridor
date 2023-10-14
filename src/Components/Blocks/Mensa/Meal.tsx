@@ -2,7 +2,7 @@ import RestaurantIcon from '@mui/icons-material/Restaurant';
 import SoupKitchenIcon from '@mui/icons-material/SoupKitchen';
 import { SxProps, TableCell, TableRow, useTheme } from "@mui/material";
 import React from "react";
-import { MensaMealTypeAggregated, MensaMealTypeOriginal } from "./useMensa";
+import { MensaMealPriceType, MensaMealTypeAggregated, MensaMealTypeOriginal } from "./useMensa";
 
 
 type IsMainCourse = {
@@ -36,7 +36,7 @@ const MealPrice: React.FC<MealParams> = ( props ) => {
     
     return props.type === "original"
         ? <span>{props.prices[ 1 ].price} Kč</span>
-        : <>{Object.entries( props.prices ).map( ([size, price]) => {
+        : <>{Object.entries<MensaMealPriceType[]>( props.prices ).map( ([size, price]) => {
             return <div key={size} style={{minWidth: "70px"}}>{price[1].price} Kč <small style={{opacity: .7}}>{size}</small></div>
         } )}</>
 }

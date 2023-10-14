@@ -41,7 +41,7 @@ const useCalendar = (
     // Remove duplicite events from the calendar if there are any
     const uniqueEvents = useMemo( () => {
         
-        const eventEntries = Object.entries( query.data.payload ).map( ( [ day, events ] ) => {
+        const eventEntries = Object.entries<CalendarEvent[]>( query.data.payload ).map( ( [ day, events ] ) => {
 
             const IDs: string[] = [];
             return [ day, events.filter( e => {

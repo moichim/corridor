@@ -27,7 +27,7 @@ const Calendar: React.FC<CalendarProps> = ({
         {...props}
         loading={calendar.isFetching}
     >
-        {Object.entries(calendar.events).map(([day, events]:[string,CalendarEvent[]]) => {
+        {Object.entries<CalendarEvent[]>(calendar.events).map(([day, events]:[string,CalendarEvent[]]) => {
 
             return <CalendarDay key={day} events={events} day={day}/>;
 

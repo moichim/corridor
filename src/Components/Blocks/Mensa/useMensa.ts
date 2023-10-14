@@ -13,7 +13,7 @@ type MensaMealTypeBase = {
     }[]
 }
 
-type MensaMealPriceType = {
+export type MensaMealPriceType = {
     type: string,
     price: number
 }
