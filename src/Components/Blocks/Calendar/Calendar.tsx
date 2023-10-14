@@ -2,7 +2,7 @@ import React from "react";
 import Time from "../../../Utils/Time";
 import Block, { BlockType } from "../../UI/Containers/Block";
 import CalendarDay from "./CalendarDay";
-import useCalendar from "./useCalendar";
+import useCalendar, { CalendarEvent } from "./useCalendar";
 
 
 type CalendarProps = BlockType & {
@@ -27,7 +27,7 @@ const Calendar: React.FC<CalendarProps> = ({
         {...props}
         loading={calendar.isFetching}
     >
-        {Object.entries(calendar.events).map(([day, events]) => {
+        {Object.entries(calendar.events).map(([day, events]:[string,CalendarEvent[]]) => {
 
             return <CalendarDay key={day} events={events} day={day}/>;
 
