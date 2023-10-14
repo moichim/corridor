@@ -54,7 +54,8 @@ const Block:React.FC<BlockType> = ( {
     return <Grid item {...cellProps} sx={sx} style={additionalCss}>
         <Grid container columnSpacing={1} sx={{
                 justifyContent: "flex-start",
-                alignItems: "center"
+                alignItems: "center",
+                height: "2rem"
             }}>
             <Grid item>
                 <Typography 

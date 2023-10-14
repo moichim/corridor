@@ -20,7 +20,7 @@ type MeteoProps = BlockType & {
     refreshFrequency: number
 }
 
-const Meteo: React.FC<MeteoProps> = ( props ) => {
+const Meteo: React.FC<MeteoProps> = (props) => {
 
 
     const current = useMeteoCurrent();
@@ -28,8 +28,8 @@ const Meteo: React.FC<MeteoProps> = ( props ) => {
     const meteo = useMeteo();
 
     const label: string = current.data.success
-      ? `Počasí v ${ Time.formatTime( new Date( current.data.payload.time ) ) }`
-      : "Počasí";
+        ? `Počasí v ${Time.formatTime(new Date(current.data.payload.time))}`
+        : "Počasí";
 
     return <Block
         label={label}
@@ -38,109 +38,112 @@ const Meteo: React.FC<MeteoProps> = ( props ) => {
         md={3}
     >
 
-        { current.data.success && <Grid container spacing={1}>
-                    <SingleValue 
-                        label="Teplota"
-                        value={current.data.payload.temperature.toFixed(2)}
-                        unit="°C"
-                        icon={<DeviceThermostatIcon fontSize="large" />}
-                    />
-                    <SingleValue 
-                        label="Rychlost větru"
-                        value={current.data.payload.wind.speed.toFixed(2)}
-                        unit="km/h"
-                        icon={<AirIcon fontSize="large" />}
-                    />
-                    <SingleValue 
-                        label="Směr větru"
-                        value={current.data.payload.wind.dir}
-                        unit=""
-                        icon={<NorthIcon fontSize="large" />}
-                    />
-                    <SingleValue 
-                        label="Déšť"
-                        value={current.data.payload.rain.toString()}
-                        unit=""
-                        icon={<WaterDropIcon fontSize="large" />}
-                    />
-                    <SingleValue 
-                        label="Vlhkost"
-                        value={current.data.payload.humidity.toFixed(2)}
-                        unit="%"
-                        icon={<InvertColorsIcon fontSize="large" />}
-                    />
-                    <SingleValue 
-                        label="UV"
-                        value={current.data.payload.uv.toString()}
-                        unit=""
-                        icon={<Typography fontSize="1.75rem">UV</Typography>}
-                    />
+        {current.data.success && <Grid container spacing={1}>
+            <SingleValue
+                label="Teplota"
+                key="Teplota"
+                value={current.data.payload.temperature.toFixed(2)}
+                unit="°C"
+                icon={<DeviceThermostatIcon fontSize="large" />}
+            />
+            <SingleValue
+                label="Rychlost větru"
+                key="Rychlost větru"
+                value={current.data.payload.wind.speed.toFixed(2)}
+                unit="km/h"
+                icon={<AirIcon fontSize="large" />}
+            />
+            <SingleValue
+                label="Směr větru"
+                key="Směr větru"
+                value={current.data.payload.wind.dir}
+                unit=""
+                icon={<NorthIcon fontSize="large" />}
+            />
+            <SingleValue
+                label="Déšť"
+                key="Déšť"
+                value={current.data.payload.rain.toString()}
+                unit=""
+                icon={<WaterDropIcon fontSize="large" />}
+            />
+            <SingleValue
+                label="Vlhkost"
+                key="Vlhkost"
+                value={current.data.payload.humidity.toFixed(2)}
+                unit="%"
+                icon={<InvertColorsIcon fontSize="large" />}
+            />
+            <SingleValue
+                label="UV"
+                key="UV"
+                value={current.data.payload.uv.toString()}
+                unit=""
+                icon={<Typography fontSize="1.75rem" marginBottom={".5rem"} variant="h3">UV</Typography>}
+            />
         </Grid>}
 
 
-      <div style={{height: "250px"}}>
+        <div style={{ height: "250px" }}>
 
 
-        <VictoryChart
-            height={200}
-            width={400}
-            theme={theme}
-            style={{
-                parent: {
-                    padding: 0,
-                    top: "-30px"
-                },
-            }}
-        >
-            <VictoryLabel
-                x={225}
-                y={25}
-                textAnchor="middle"
-                text="Teplota"
-                
-            />
-
-            <VictoryAxis 
-                dependentAxis
-                // label="Teplota"
-                animate
-                fixLabelOverlap
-                tickFormat={( value: number ) => `${value} °C`}
-                tickCount={10}
-                domain={{y:[0, 35]}}
-                y0={-10}
-            />
-
-            <VictoryAxis 
-                tickCount={8}
-                standalone
-                tickFormat={( value: number ) => format(new Date(value), "HH:MM") }
-                domain={{x:Object.values( meteo.tick ) as DomainTuple}}
-                fixLabelOverlap={true}
-            />
-
-<VictoryLegend x={125} y={30}
-    centerTitle
-    orientation="horizontal"
-    gutter={20}
-    style={{ border: { stroke: "black" }, title: {fontSize: 20 } }}
-    data={
-        meteo.victory.map( serie => ({
-            fill: serie.color,
-            name: serie.name
-        }) )
-    }
-  />
-
-            {meteo.victory.map( serie => <VictoryGroup
-                key={serie.color}
-                color={serie.color}
-                data={serie.data}
-                y0={() => 10}
+            <VictoryChart
+                height={200}
+                width={400}
+                theme={theme}
+                style={{
+                    parent: {
+                        padding: 0,
+                        top: "-30px"
+                    },
+                }}
             >
-                <VictoryLine/>
-            </VictoryGroup> )}
-        </VictoryChart>
+                <VictoryLabel
+                    x={225}
+                    y={25}
+                    textAnchor="middle"
+                    text="Teplota"
+
+                />
+
+                <VictoryAxis
+                    dependentAxis
+                    animate
+                    fixLabelOverlap
+                    tickFormat={(value: number) => `${value} °C`}
+                    tickCount={10}
+                    y0={-10}
+                />
+
+                <VictoryAxis
+                    tickCount={8}
+                    standalone
+                    tickFormat={(value: number) => format(new Date(value), "HH:MM")}
+                    fixLabelOverlap={true}
+                />
+
+                <VictoryLegend x={125} y={30}
+                    centerTitle
+                    orientation="horizontal"
+                    gutter={20}
+                    style={{ border: { stroke: "black" }, title: { fontSize: 20 } }}
+                    data={
+                        meteo.victory.map(serie => ({
+                            fill: serie.color,
+                            name: serie.name
+                        }))
+                    }
+                />
+
+                {meteo.victory.map(serie => <VictoryGroup
+                    key={serie.name}
+                    color={serie.color}
+                    data={serie.data}
+                    y0={() => 10}
+                >
+                    <VictoryLine />
+                </VictoryGroup>)}
+            </VictoryChart>
 
         </div>
 

@@ -53,12 +53,14 @@ export class InstanceFactory {
 
     protected meteo(): React.JSX.Element {
         return <Meteo
+            key="meteo"
             refreshFrequency={Time.minutes(1)}
         />
     }
 
     protected irt(): React.JSX.Element {
         return <Articles
+            key="irt"
             xs={12}
             md={3}
             refreshFrequency={Time.minutes(10)}
@@ -70,6 +72,7 @@ export class InstanceFactory {
 
     protected projects(): React.JSX.Element {
         return <Articles
+            key="projects"
             xs={12}
             md={3}
             refreshFrequency={Time.minutes(11)}
@@ -81,6 +84,7 @@ export class InstanceFactory {
 
     protected traffic(): React.JSX.Element {
         return <ExternalFrame
+            key="traffic"
             label="Dopravní situace"
             src="https://frame.mapy.cz/s/larorukeco"
             xs={12}
@@ -90,6 +94,7 @@ export class InstanceFactory {
 
     protected clock(): React.JSX.Element {
         return <Clock
+            key="clock"
             xs={12}
             md={3}
         />
@@ -97,6 +102,7 @@ export class InstanceFactory {
 
     protected calendar(): React.JSX.Element {
         return <Calendar
+            key="calendar"
             label="Kalendář"
             xs={12}
             md={3}
@@ -106,6 +112,7 @@ export class InstanceFactory {
 
     protected mensa(): React.JSX.Element {
         return <Mensa
+            key="mensa"
             label="Mensa"
             xs={12}
             md={3}

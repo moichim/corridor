@@ -54,6 +54,7 @@ const SingleValue: React.FC<SingleValueProps> = props => {
                         style={{
                             transform: transform,
                         }}
+                        component={"div"}
                     >
                         {props.icon}
                     </Typography>

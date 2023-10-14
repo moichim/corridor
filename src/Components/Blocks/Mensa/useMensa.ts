@@ -63,9 +63,12 @@ const useMensa = (
         cacheTime: 0
     });
 
+    const hasFood = query.data.payload.mainCourses.length > 0 && Object.values( query.data.payload.soups ).length > 0;
+
     return {
         ...query,
-        mensa: query.data.payload 
+        mensa: query.data.payload,
+        hasFood
     };
 
 }

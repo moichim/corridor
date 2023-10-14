@@ -5,6 +5,7 @@ import Meal from "./Meal";
 import useMensa from "./useMensa";
 
 import Time from "@src/Utils/Time";
+import PaperExtended from "@src/Components/UI/Containers/PaperExtended";
 
 type MensaProperties = BlockType & {
     refreshFrequency?: number
@@ -20,6 +21,18 @@ const Mensa: React.FC<MensaProperties> = ({
     const theme = useTheme();
 
     const isStretched = ( mensa.mensa.mainCourses.length + Object.values( mensa.mensa.soups ).length ) > 7;
+
+    if ( ! mensa.hasFood ) {
+        return <Block
+        label={label}
+        {...props}
+        loading={mensa.isFetching}
+    >
+
+        <PaperExtended scheme={"minor"}>Dosud nebyl nezveřejněn jídelníček.</PaperExtended>
+
+    </Block>
+    }
 
     return <Block
         label={label}
