@@ -20,6 +20,17 @@ const Mensa: React.FC<MensaProperties> = ({
     const mensa = useMensa(refreshFrequency);
     const theme = useTheme();
 
+    if ( Array.isArray( mensa.mensa ) ) {
+        return <Block
+            label={label}
+            loading={mensa.isFetching}
+        >
+            <PaperExtended scheme="minor">
+                Mensa nezveřejnila jídelníček.
+            </PaperExtended>
+        </Block>
+    }
+
     const isStretched = ( mensa.mensa.mainCourses.length + Object.values( mensa.mensa.soups ).length ) > 7;
 
     if ( ! mensa.hasFood ) {
