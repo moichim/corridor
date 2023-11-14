@@ -63,7 +63,9 @@ const useMensa = (
         cacheTime: 0
     });
 
-    const hasFood = query.data.payload.mainCourses.length > 0 && Object.values( query.data.payload.soups ).length > 0;
+    const hasFood = Array.isArray( query.data.payload ) 
+        ? false 
+        : query.data.payload.mainCourses.length > 0 && Object.values( query.data.payload.soups ).length > 0;
 
     return {
         ...query,
